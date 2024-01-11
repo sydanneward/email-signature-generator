@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('emailForm');
     const imgPlaceholder = '[PhotoUpload]'; // Placeholder in your HTML template
@@ -27,23 +26,23 @@ document.addEventListener('DOMContentLoaded', function () {
         var showCellphone = document.getElementById('cellphoneCheckbox').checked;
         var showAgentLicense = document.getElementById('agentlicenseCheckbox').checked;
 
-        document.addEventListener('DOMContentLoaded', function() {
-            fetchImages();
-        });  
-
         // Handle photo upload
         const photoInput = document.getElementById('photoUpload');
         let base64Image = '';
         if (photoInput.files && photoInput.files[0]) {
             const imgFile = photoInput.files[0];
-            base64Image = await getBase64(imgFile);
+            base64Image = await getBase64(imgFile); // Use await here
         }
 
         // Fetch and process the template
-        fetch('es-template.html')
-            .then(response => response.ok ? response.text() : Promise.reject('Failed to load template'))
-            .then(html => {
-var tempDiv = document.createElement('div');
+        try {
+            const response = await fetch('es-template.html');
+            if (!response.ok) {
+                throw new Error('Failed to load template');
+            }
+            const html = await response.text();
+            
+            var tempDiv = document.createElement('div');
             tempDiv.innerHTML = html;
 
             // Set the photo source directly to the URL
@@ -70,10 +69,10 @@ var tempDiv = document.createElement('div');
                 tempDiv.querySelector('#agentlicense').style.display = 'none';
             }
 
-            // Replace the content of the signatureOutput div with the modified HTML
             document.getElementById('signatureOutput').innerHTML = tempDiv.innerHTML;
-                    })
-            .catch(error => console.error('Error:', error));
+        } catch (error) {
+            console.error('Error:', error);
+        }
     });
 });
 
