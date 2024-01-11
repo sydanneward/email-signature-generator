@@ -107,8 +107,13 @@ button:hover {
         <input type="text" id="cellphone" name="cellphone">
         <br>
 
+        <input type="checkbox" id="rsalicenseCheckbox">
+        <label for="rsalicense">RSA License Number *required for Agents, AMs, ASRs*</label>
+        <input type="hidden" id="rsalicense" name="rsalicense" value='#0L78680'>
+        <br>
+
         <input type="checkbox" id="agentlicenseCheckbox">
-        <label for="agentlicense">Agent License Number:</label>
+        <label for="agentlicense">Agent License Number *required for Agents, AMs, ASRs*</label>
         <select id="agentlicense" name="agentlicense">
 
             <option value="890071">BRAD BECK</option>
@@ -145,12 +150,8 @@ button:hover {
         <br>
 
         <label for="photoUpload">Photo:</label>
-        <input type="file" id="photoUpload">
+        <input type="file" id="photoUpload" required>
         <br>
-
-        <input type="checkbox" id="rsalicenseCheckbox">
-        <label for="rsalicense">RSA License Number</label>
-        <input type="hidden" id="rsalicense" name="rsalicense" value='#0L78680'>
 
         <button type="submit">Generate Signature</button>
         <button id="copyButton" onclick="copyToClipboard()">Copy Signature to Clipboard</button>
