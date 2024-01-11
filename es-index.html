@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Signature Generator Test</title>
+
+    <style>
+body {
+    font-family: 'Proxima Nova', sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    color: #333;
+    margin-top: 20px;
+}
+
+form {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    width: 500px;
+}
+
+label {
+    align-items: center;
+    display: inline-block;
+    margin-top: 10px;
+    color: #333;
+}
+
+label > input[type="checkbox"] {
+    margin-right: 5px; 
+}
+
+input, select {
+    flex: 1;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #ab1417;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ab1417;
+}
+
+#signatureOutput {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+#copyButton {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #708cb5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#copyButton:hover {
+    background-color: #357ae8;
+}
+
+    </style>
+
+</head>
+<body>
+    <h2>Email Signature Generator Test</h2>
+    
+    <form id="emailForm">
+        <label for="name">*Name:</label>
+        <input type="text" id="name" name="name" required>
+            <br>
+        <label for="title">*Title:</label>
+        <input type="text" id="title" name="title" required>
+        <br>
+
+        <input type="hidden" id="rsaphone" name="rsaphone" value='O: 435-625-1022'required>
+
+        <input type="checkbox" id="cellphoneCheckbox">
+        <label for="cellphone">Cell Phone:</label>
+        <input type="text" id="cellphone" name="cellphone">
+        <br>
+
+        <input type="checkbox" id="agentlicenseCheckbox">
+        <label for="agentlicense">Agent License Number:</label>
+        <select id="agentlicense" name="agentlicense">
+
+            <option value="890071">BRAD BECK</option>
+            <option value="957250">MCKAY ERICKSON</option>
+            <option value="947106">TYLER SHUPE</option>
+            <option value="946071">ANDE URIGUEN</option>
+            <option value="947027">CIARA SHELTON</option>
+            <option value="53049982">HUNTER BREVARD</option>
+            <option value="956073">LEAH HARRISON</option>
+            <option value="786600">SAVANNAH KASHOW</option>
+            <option value="870126">COULTON WOODGER</option>
+            <option value="734521">AARON ORR</option>
+            <option value="931893">ASPEN PETERSON</option>
+            <option value="790141">AUSTIN HART</option>
+            <option value="2703927">BILL HALEY</option>
+            <option value="2858381">BRENT WILHELM</option>
+            <option value="18884883">BROOKE WHITE</option>
+            <option value="686029">CHARLES REDD</option>
+            <option value="837053">JESSICA MCCARTNEY</option>
+            <option value="917909">JORDAN OWENS</option>
+            <option value="20122116">OSCAR AUKER</option>
+            <option value="881599">ROSS BRONSON</option>
+            <option value="2725140">SAMMY FIELDS</option>
+            <option value="769412">SHAUN EVANS</option>
+            <option value="612657">STEVEN M REDD</option>
+            <option value="943474">TRAVIS HANCOCK</option>
+            <option value="807811">TRAVIS REDD</option>
+            <option value="623928">STEVE REDD</option>
+            <option value="867106">JILL EDMAN</option>
+            <option value="215593">JOSH BROWN</option>
+            <option value="788938">ANNIE TADD</option>
+            <option value="980788">CONNOR ATKINSON</option>
+        </select>
+        <br>
+
+        <label for="photodropdown">Photo:</label>
+        <select id="photodropdown" name="photodropdown">
+            <option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989315/code/Headshots/new_image7.png'>Ande Uriguen</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989324/code/Headshots/new_image9.png'>Annie Tadd</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989332/code/Headshots/new_image11.png'>Austin Hart</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989335/code/Headshots/new_image15.png'>Brad Beck</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989327/code/Headshots/new_image17.png'>Brent Wilhelm</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989395/code/Headshots/new_image19.png'>Brooke White</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989439/code/Headshots/new_image21.png'>Charles Redd</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989437/code/Headshots/new_image23.png'>Ciara Shelton</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989432/code/Headshots/new_image25.png'>Coulton Woodger</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989389/code/Headshots/new_image29.png'>Devon Terry</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989357/code/Headshots/new_image33.png'>Drew Tadd</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989377/code/Headshots/new_image37.png'>Gabbie Whitesell</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989320/code/Headshots/new_image39.png'>Hunter Brevard</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989429/code/Headshots/new_image41.png'>Jessica McCartney</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989405/code/Headshots/new_image43.png'>Jill Edman</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989426/code/Headshots/new_image47.png'>Jocelyn Oaks</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989400/code/Headshots/new_image49.png'>Jordan Owens</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989374/code/Headshots/new_image51.png'>Katie Riley</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989353/code/Headshots/new_image6.png'>Leah Harrison</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989322/code/Headshots/new_image12.png'>McKay Erickson</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989355/code/Headshots/new_image16.png'>Melissa Carlos</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989442/code/Headshots/new_image18.png'>Oscar Auker</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989410/code/Headshots/new_image20.png'>Ross Bronson</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989363/code/Headshots/new_image22.png'>Sammy Fields</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989371/code/Headshots/new_image24.png'>Savannah Kashow</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989368/code/Headshots/new_image26.png'>Shaun Evans</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989408/code/Headshots/new_image34.png'>Shawn Peterson</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989423/code/Headshots/new_image40.png'>Steve Redd</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989416/code/Headshots/new_image42.png'>Steven M Redd</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989421/code/Headshots/new_image46.png'>Sydney Ward</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989434/code/Headshots/new_image48.png'>Travis Hancock</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989387/code/Headshots/new_image50.png'>Travis Redd</option>
+<option value='https://res.cloudinary.com/dyxz3uujc/image/upload/v1701989398/code/Headshots/new_image52.png'>Tyler Shupe</option>
+        </select>
+        <br>
+
+        <input type="hidden" id="rsalicense" name="rsalicense" value='#0L78680'>
+
+        <button type="submit">Generate Signature</button>
+        <button id="copyButton" onclick="copyToClipboard()">Copy Signature to Clipboard</button>
+    </form>
+
+    <div id="signatureOutput"></div>
+
+    <script src='https://res.cloudinary.com/dyxz3uujc/raw/upload/v1704995539/code/es-script.js'></script>
+
+    <script>
+        function copyToClipboard() {
+            var signatureOutput = document.getElementById('signatureOutput');
+            var range = document.createRange();
+            range.selectNode(signatureOutput);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            alert('Signature copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
