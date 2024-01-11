@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var showAgentLicense = document.getElementById('agentlicenseCheckbox').checked;
 
         // Handle photo upload
-        const photoInput = document.getElementById('photoUpload');
+        const photoInput = document.getElementById('photoDropdown');
         let base64Image = '';
         if (photoInput.files && photoInput.files[0]) {
             const imgFile = photoInput.files[0];
@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
             tempDiv.innerHTML = html;
 
             // Set the photo source directly to the URL
-            var photodropdown = document.getElementById('photodropdown');
-            var selectedPhotoUrl = photodropdown.options[photodropdown.selectedIndex].value;
-            tempDiv.querySelector('#photodropdown').src = selectedPhotoUrl;
+            if (base64Image) {
+                tempDiv.querySelector('#photoDropdown').src = base64Image; // Make sure you have an img element with this ID in your template
+            }
 
             // Replace placeholders with user-specific data
             tempDiv.querySelector('#nameOutput').textContent = name;
