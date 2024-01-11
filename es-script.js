@@ -30,7 +30,7 @@ document.getElementById('emailForm').addEventListener('submit', function (e) {
     });  
 
     // Fetch the template HTML
-    fetch('https://res.cloudinary.com/dyxz3uujc/raw/upload/code/es-template.html')
+    fetch('es-template.html')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
