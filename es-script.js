@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Get checkbox values
         var showCellphone = document.getElementById('cellphoneCheckbox').checked;
         var showAgentLicense = document.getElementById('agentlicenseCheckbox').checked;
+        var showrsaLicense = document.getElementById('rsalicenseCheckbox').checked;
+
 
         // Handle photo upload
         const photoInput = document.getElementById('photoUpload');
@@ -54,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
             tempDiv.querySelector('#nameOutput').textContent = name;
             tempDiv.querySelector('#titleOutput').textContent = title;
             tempDiv.querySelector('#rsaphoneOutput').textContent = rsaphone;
-            tempDiv.querySelector('#rsalicense').textContent = rsalicense;
 
             // Conditionally show/hide elements based on checkboxes
             if (showCellphone) {
@@ -67,6 +68,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 tempDiv.querySelector('#agentlicense').textContent = agentlicense;
             } else {
                 tempDiv.querySelector('#agentlicense').style.display = 'none';
+            }
+
+            if (showrsaLicense) {
+                tempDiv.querySelector('#rsalicense').textContent = rsalicense;
+            } else {
+                tempDiv.querySelector('#rsalicense').style.display = 'none';
             }
 
             document.getElementById('signatureOutput').innerHTML = tempDiv.innerHTML;
