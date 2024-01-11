@@ -1,3 +1,10 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('emailForm');
+    const imgPlaceholder = '[PhotoUpload]'; // Placeholder in your HTML template
+
+    form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
 document.getElementById('emailForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -28,6 +35,25 @@ document.getElementById('emailForm').addEventListener('submit', function (e) {
     document.addEventListener('DOMContentLoaded', function() {
         fetchImages();
     });  
+
+    const photoInput = document.getElementById('photoUpload');
+    if (photoInput.files && photoInput.files[0]) {
+        const imgFile = photoInput.files[0];
+        const base64Image = await getBase64(imgFile);
+
+        // Replace the image placeholder in your template
+        const template = document.getElementById('template').innerHTML;
+        const signature = template.replace(imgPlaceholder, base64Image);
+
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+    });
 
     // Fetch the template HTML
     fetch('es-template.html')
@@ -75,4 +101,3 @@ function formatcellphone(cellphone) {
     // Format the phone number with dashes
     return cellphone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 }
-
