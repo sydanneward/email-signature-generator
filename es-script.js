@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('emailForm');
     const imgPlaceholder = '[PhotoUpload]'; // Placeholder in your HTML template
@@ -5,66 +6,44 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', async function (event) {
         event.preventDefault();
 
-document.getElementById('emailForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+        var name = document.getElementById('name').value.toUpperCase(); // Capitalize the name
+        var title = document.getElementById('title').value;
+        var rsaphone = document.getElementById('rsaphone').value;
+        var cellphone = document.getElementById('cellphone').value;
+        var agentlicense = document.getElementById('agentlicense').value;
+        var rsalicense = document.getElementById('rsalicense').value;
 
-    var name = document.getElementById('name').value;
-    var title = document.getElementById('title').value;
-    var rsaphone = document.getElementById('rsaphone').value;
-    var cellphone = document.getElementById('cellphone').value;
-    var agentlicense = document.getElementById('agentlicense').value;
-    var rsalicense = document.getElementById('rsalicense').value;
-
-    // Capitalize the "Name" field
-    name = name.toUpperCase();
-
-    // Add "C: " in front of the "Cell Phone" field
-    if (cellphone) {
-        cellphone = 'C: ' + formatcellphone(cellphone);
-    }
-
-    // Add "#" in front of the "Agent License Number" field
-    if (agentlicense) {
-        agentlicense = '#' + agentlicense;
-    }
-
-    // Get checkbox values
-    var showCellphone = document.getElementById('cellphoneCheckbox').checked;
-    var showAgentLicense = document.getElementById('agentlicenseCheckbox').checked;
-
-    document.addEventListener('DOMContentLoaded', function() {
-        fetchImages();
-    });  
-
-    const photoInput = document.getElementById('photoUpload');
-    if (photoInput.files && photoInput.files[0]) {
-        const imgFile = photoInput.files[0];
-        const base64Image = await getBase64(imgFile);
-
-        // Replace the image placeholder in your template
-        const template = document.getElementById('template').innerHTML;
-        const signature = template.replace(imgPlaceholder, base64Image);
-
-        function getBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-                reader.readAsDataURL(file);
-            });
+        // Add "C: " in front of the "Cell Phone" field
+        if (cellphone) {
+            cellphone = 'C: ' + formatcellphone(cellphone);
         }
-    });
 
-    // Fetch the template HTML
-    fetch('es-template.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(html => {
-            var tempDiv = document.createElement('div');
+        // Add "#" in front of the "Agent License Number" field
+        if (agentlicense) {
+            agentlicense = '#' + agentlicense;
+        }
+
+        // Get checkbox values
+        var showCellphone = document.getElementById('cellphoneCheckbox').checked;
+        var showAgentLicense = document.getElementById('agentlicenseCheckbox').checked;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchImages();
+        });  
+
+        // Handle photo upload
+        const photoInput = document.getElementById('photoUpload');
+        let base64Image = '';
+        if (photoInput.files && photoInput.files[0]) {
+            const imgFile = photoInput.files[0];
+            base64Image = await getBase64(imgFile);
+        }
+
+        // Fetch and process the template
+        fetch('es-template.html')
+            .then(response => response.ok ? response.text() : Promise.reject('Failed to load template'))
+            .then(html => {
+var tempDiv = document.createElement('div');
             tempDiv.innerHTML = html;
 
             // Set the photo source directly to the URL
@@ -93,9 +72,19 @@ document.getElementById('emailForm').addEventListener('submit', function (e) {
 
             // Replace the content of the signatureOutput div with the modified HTML
             document.getElementById('signatureOutput').innerHTML = tempDiv.innerHTML;
-        })
-        .catch(error => console.error('Error fetching HTML:', error));
+                    })
+            .catch(error => console.error('Error:', error));
+    });
 });
+
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+        reader.readAsDataURL(file);
+    });
+}
 
 function formatcellphone(cellphone) {
     // Format the phone number with dashes
