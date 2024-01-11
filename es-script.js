@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var showAgentLicense = document.getElementById('agentlicenseCheckbox').checked;
 
         // Handle photo upload
-        const photoInput = document.getElementById('photoDropdown');
+        const photoInput = document.getElementById('photoUpload');
         let base64Image = '';
         if (photoInput.files && photoInput.files[0]) {
             const imgFile = photoInput.files[0];
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Set the photo source directly to the URL
             if (base64Image) {
-                tempDiv.querySelector('#photoDropdown').src = base64Image; // Make sure you have an img element with this ID in your template
+                tempDiv.querySelector('#photoUpload').src = base64Image; // Make sure you have an img element with this ID in your template
             }
 
             // Replace placeholders with user-specific data
